@@ -52,6 +52,10 @@ class mouse extends Panel implements MouseListener,MouseMotionListener{
         }     	
     }
     
+    public void update(Graphics g){
+        g.clearRect(0, 0, 400, 400);
+    }
+    
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -120,7 +124,7 @@ class mouse extends Panel implements MouseListener,MouseMotionListener{
 class mFrame extends Frame{
 	int penweight,colorchoose=3,penmode=3;
     Color[] color;
-    mouse mouse = new mouse();
+    mouse mouse;
     public mFrame(){
     	setSize(400,400);
 		addWindowListener(new WindowAdapter() {
@@ -128,7 +132,7 @@ class mFrame extends Frame{
 				System.exit(0);
 			}
 		});
-		
+		mouse = new mouse();
         MenuBar mb = new MenuBar();
 		
 		Pensize pensize = new Pensize();
@@ -261,9 +265,11 @@ class mFrame extends Frame{
 			x = (MenuItem) e.getSource();
 			if(x == m1)
 				mouse.repaint();
-			else if(x == m2)
+			else if(x == m2){
 				colorchoose=4;
-			mouse.setpencolor(color[colorchoose]);	
+				mouse.setpencolor(color[colorchoose]);	
+				mouse.setpenmode(3);
+			}
 		}
 	}
 }
